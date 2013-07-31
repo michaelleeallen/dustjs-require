@@ -15,14 +15,17 @@ A requirejs plugin that loads dustjs templates and compiles them. This lets you 
 
 ## Configuration
 
-You must specify the extension your templates use in the requirejs config object:
+You must specify the extension your templates use in the requirejs config object, and the path to this plugin:
 	
 	require.config({
 		config: {
 			dust: {
 				extension: ".dust" // your extension here(.dust, .dst, .tpl, .awesome, etc..)
 			}
-		}	
+		},
+		paths: {
+		    dust: 'path/to/this/plugin/dustjs-require'
+		}
 	});
 
 ## Usage
@@ -31,11 +34,11 @@ Include your dustjs templates in your AMD module like you would with the text! p
 
 	define(['dust!path/to/your/template/partial.dust'])
 
-You can configure the plugin to use whatever extension you from the config section above. The plugin will load the template, compile it, store it in dust.cache as:
+You can configure the plugin to use your own extension from the config section above. The plugin will load the template, compile it, store it in dust.cache as:
 	
 	dust.cache['path/to/your/template/partial']
 
-, and return the template name to your AMD module. Then you can render your templates via dust.render:
+ , and return the template name to your AMD module. Then you can render your templates via dust.render:
 	
 	define(
 		[
