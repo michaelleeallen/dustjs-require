@@ -27,14 +27,16 @@ You must specify the extension your templates use in the requirejs config object
 
 ## Usage
 
-Include your dustjs templates in your AMD module like you would with the text! plugin, except replace "text" with "dust":
+Include your dustjs templates in your AMD module like you would with the text! plugin:
 
 	define(['dust!path/to/your/template/partial.dust'])
 
-You can configure the plugin to use whatever extension you from the config section above. The plugin will load the template,
-compile it, store it in dust.cache as:
+You can configure the plugin to use whatever extension you from the config section above. The plugin will load the template, compile it, store it in dust.cache as:
+	
 	dust.cache['path/to/your/template/partial']
+
 , and return the template name to your AMD module. Then you can render your templates via dust.render:
+	
 	define(
 		[
 			'dustjs-linkedin',
