@@ -16,8 +16,8 @@ define(
        */
       load: function(name, req, onload, config){
         req(['text!'+name], function(tpl){
-          var extension = name.substring(name.lastIndexOf('.'))
-          , path = name.slice(0, -(extension.length));
+          var extension = name.substring(name.lastIndexOf('.'));
+          var path = name.slice(0, -(extension.length));
           dust.loadSource(dust.compile(tpl, path));
           onload(path);
         });
