@@ -15,14 +15,9 @@ A requirejs plugin that loads dustjs templates and compiles them. This lets you 
 
 ## Configuration
 
-You must specify the extension your templates use in the requirejs config object, and the path to this plugin:
+The dust template file extension is now detected automattically(thanks, @clmsnskr).You must specify the path to this plugin:
 	
 	require.config({
-		config: {
-			dust: {
-				extension: ".dust" // your extension here(.dust, .dst, .tpl, .awesome, etc..)
-			}
-		},
 		paths: {
 		    dust: 'path/to/this/plugin/dustjs-require'
 		}
