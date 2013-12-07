@@ -46,7 +46,7 @@ define([
 
             if (config.isBuild) {
               // write out the module definition for builds
-              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'"));});'].join('');
+              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'")); return "',path,'";});'].join('');
             } else {
               dust.loadSource(dust.compile(tpl, path));
             }

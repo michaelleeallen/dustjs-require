@@ -6204,7 +6204,7 @@ define('dustc',[
 
             if (config.isBuild) {
               // write out the module definition for builds
-              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'"));});'].join('');
+              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'")); return "',path,'";});'].join('');
             } else {
               dust.loadSource(dust.compile(tpl, path));
             }
@@ -6222,7 +6222,7 @@ define('dustc',[
     };
   });
 
-define('dustc!test/partial.dust',["dustjs-linkedin"],function(dust){dust.loadSource(dust.compile('<p id="test">Hello, {name}!</p>', "test/partial"));});
+define('dustc!test/partial.dust',["dustjs-linkedin"],function(dust){dust.loadSource(dust.compile('<p id="test">Hello, {name}!</p>', "test/partial")); return "test/partial";});
 require([
 		"dustjs-linkedin",
 		"dustc!test/partial.dust"
