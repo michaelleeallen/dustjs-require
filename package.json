@@ -1,0 +1,13 @@
+{
+	"name": "dustjs-require",
+	"description": "A dustjs template loader plugin for requirejs.",
+	"repository": "git@github.com:bfui/dustjs-require.git",
+	"devDependencies": {
+		"requirejs": "~2.1",
+		"dustjs-linkedin": "~2.2",
+		"nodeunit": "~0.7"
+	},
+	"scripts": {
+		"test": "nodeunit test/unit.js"
+	}
+}
