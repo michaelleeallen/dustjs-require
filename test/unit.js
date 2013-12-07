@@ -18,35 +18,67 @@ requirejs.config({
 
 
 module.exports = {
-	setUp: function(cb){
-		var that = this;
+	nonOptimized: {
+		setUp: function(cb){
+			var that = this;
 
-		requirejs([
-			'dustjs-linkedin',
-			'dustc!test/partial.dust'
-		], function(dust, tpl){
-			that.template = tpl;
-			that.dust = dust;
-			cb();
-		});
-	},
-	load: function(test){
-		test.ok(this.template);
-		test.expect(1);
-		test.done();
-	},
-	compile: function(test){
-		test.ok(this.dust.cache);
-		test.ok(this.dust.cache[tplPath]);
-		test.expect(2);
-		test.done();
-	},
-	render: function(test){
-		this.dust.render(tplPath, {name:"World"}, function(err, out){
-			test.ok(out);
-			test.equals("<p>Hello, World!</p>", out);
+			requirejs([
+				'dustjs-linkedin',
+				'dustc!test/partial.dust'
+			], function(dust, tpl){
+				that.template = tpl;
+				that.dust = dust;
+				cb();
+			});
+		},
+		load: function(test){
+			test.ok(this.template);
+			test.expect(1);
+			test.done();
+		},
+		compile: function(test){
+			test.ok(this.dust.cache);
+			test.ok(this.dust.cache[tplPath]);
 			test.expect(2);
 			test.done();
-		});
+		},
+		render: function(test){
+			this.dust.render(tplPath, {name:"World"}, function(err, out){
+				test.ok(out);
+				test.equals("<p>Hello, World!</p>", out);
+				test.expect(2);
+				test.done();
+			});
+		}
+	},
+	optimized: {
+		setUp: function(cb){
+			var that = this;
+			requirejs.optimize({
+				baseUrl: basePath,
+				name: "test/main",
+				optimize: 'none',
+				paths: {
+					"dustjs-linkedin": "node_modules/dustjs-linkedin/dist/dust-full-2.2.2",
+					"dustc": "dustjs-require",
+					"text": "vendor/requirejs-text/text",
+					"q": "vendor/q/q"
+				},
+				out: testBuildPath
+			}, function (buildResponse) {
+					that.buildResponse = buildResponse;
+					cb();
+			}, function(err) {
+					that.error = err;
+			    cb();
+			});
+		},
+		build: function(test){
+			var contents = fs.readFileSync(testBuildPath, 'utf8');
+			test.ok(this.buildResponse);
+			test.ok(contents);
+			test.expect(2);
+			test.done();
+		}
 	}
 };
