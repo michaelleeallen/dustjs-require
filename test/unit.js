@@ -45,7 +45,7 @@ module.exports = {
 		render: function(test){
 			this.dust.render(tplPath, {name:"World"}, function(err, out){
 				test.ok(out);
-				test.equals("<p>Hello, World!</p>", out);
+				test.equals('<p id="test">Hello, World!</p>', out);
 				test.expect(2);
 				test.done();
 			});
@@ -54,6 +54,9 @@ module.exports = {
 	optimized: {
 		setUp: function(cb){
 			var that = this;
+
+			fs.unlinkSync(testBuildPath);
+
 			requirejs.optimize({
 				baseUrl: basePath,
 				name: "test/main",
