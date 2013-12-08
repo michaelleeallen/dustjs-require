@@ -70,6 +70,7 @@ module.exports = {
 				out: testBuildPath
 			}, function (buildResponse) {
 					that.buildResponse = buildResponse;
+					console.log(buildResponse);
 					cb();
 			}, function(err) {
 					that.error = err;
