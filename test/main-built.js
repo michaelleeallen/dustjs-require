@@ -3841,7 +3841,7 @@ define("dustjs-linkedin", function(){});
   define, window, process, Packages,
   java, location, Components, FileUtils */
 
-define('vendor/requirejs-text/text',['module'], function (module) {
+define('text',['module'], function (module) {
     
 
     var text, fs, Cc, Ci, xpcIsWindows,
@@ -4265,7 +4265,7 @@ define('vendor/requirejs-text/text',['module'], function (module) {
 
     // RequireJS
     } else if (typeof define === "function" && define.amd) {
-        define('vendor/q/q',definition);
+        define('q',definition);
 
     // SES (Secure EcmaScript)
     } else if (typeof ses !== "undefined") {
@@ -6158,8 +6158,8 @@ return Q;
 
 define('dustc',[
   'module',
-  'vendor/requirejs-text/text',
-  'vendor/q/q'
+  'text',
+  'q'
 ],
   function(module, text, Q) {
     var dustModule = module.config().dustModule || 'dustjs-linkedin';

@@ -1,7 +1,7 @@
 define([
   'module',
-  'vendor/requirejs-text/text',
-  'vendor/q/q'
+  'text',
+  'q'
 ],
   function(module, text, Q) {
     var dustModule = module.config().dustModule || 'dustjs-linkedin';
