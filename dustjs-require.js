@@ -42,8 +42,6 @@ define([
             var extension = name.substring(name.lastIndexOf('.'));
             var path = name.slice(0, -(extension.length));
 
-            tpl = text.jsEscape(tpl);
-
             if (config.isBuild) {
               // write out the module definition for builds
               buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'")); return "',path,'";});'].join('');
