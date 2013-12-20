@@ -15,17 +15,19 @@ A requirejs plugin that loads dustjs templates and compiles them. This lets you 
 
 ## Configuration
 
-The dust template file extension is now detected automattically(thanks, @clmsnskr).You must specify the path to this plugin and provide the path to dustjs. You may optionally specify a module name for dustjs:
+The dust template file extension is now detected automattically(thanks, @clmsnskr).You must specify the path to this plugin and provide the path to dustjs. You may optionally specify a module name for dustjs if different from "dustjs-linkedin". You must also include the requirejs-text plugin and Q framework in your project:
 
 	require.config({
 	  config: {
 	    'dustc': {
-	      dustModule: 'dustjs-linkedin' // optional, defaults to "dustjs-linkedin"
+	      dustModule: 'dustjs' // optional, defaults to "dustjs-linkedin"
 	    }
 	  },
 	  paths: {
 	    'dustc': 'path/to/this/plugin/dustjs-require',
-	    'dustjs-linkedin': 'path/to/dustjs-linkedin/dist/dust-full-2.2.2'
+	    'dustjs': 'path/to/dustjs-linkedin/dist/dust-full-2.2.2',
+	    'q': 'path/to/q',
+	    'text': 'path/to/text'
 	  }
 	});
 
