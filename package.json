@@ -7,7 +7,7 @@
 	"devDependencies": {
 		"requirejs": "~2.1",
 		"dustjs-linkedin": "~2.2",
-		"nodeunit": "~0.7"
+		"nodeunit": "~0.8"
 	},
 	"scripts": {
 		"test": "nodeunit test/unit.js"

@@ -55,7 +55,9 @@ module.exports = {
 		setUp: function(cb){
 			var that = this;
 
-			fs.unlinkSync(testBuildPath);
+			if ( fs.existsSync(testBuildPath) ) {
+				fs.unlinkSync(testBuildPath);
+			}
 
 			requirejs.optimize({
 				baseUrl: basePath,
@@ -74,6 +76,7 @@ module.exports = {
 					cb();
 			}, function(err) {
 					that.error = err;
+					console.error(err);
 			    cb();
 			});
 		},
