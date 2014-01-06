@@ -10,9 +10,7 @@ requirejs.config({
 	baseUrl: basePath,
 	nodeRequire: require,
 	paths: {
-		"dustc": "dustjs-require",
-		"text": "vendor/requirejs-text/text",
-		"q": "vendor/q/q"
+		"dustc": "dustjs-require"
 	}
 });
 
@@ -65,9 +63,7 @@ module.exports = {
 				optimize: 'none',
 				paths: {
 					"dustjs-linkedin": "node_modules/dustjs-linkedin/dist/dust-full-2.2.2",
-					"dustc": "dustjs-require",
-					"text": "vendor/requirejs-text/text",
-					"q": "vendor/q/q"
+					"dustc": "dustjs-require"
 				},
 				out: testBuildPath
 			}, function (buildResponse) {
