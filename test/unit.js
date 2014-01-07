@@ -47,6 +47,16 @@ module.exports = {
 				test.expect(2);
 				test.done();
 			});
+		},
+		cache: function(test){
+			var that = this;
+			this.dust.cache['test/caching'] = "test";
+			requirejs(['dustc!test/caching.dust'], function(tpl){
+				test.ok(tpl);
+				test.equals('test', that.dust.cache[tpl]);
+				test.expect(2);
+				test.done();
+			});
 		}
 	},
 	optimized: {
