@@ -37,20 +37,24 @@ define([
        *  @returns {string} template name
        */
       load: function(name, req, onload, config){
+        var extension = name.substring(name.lastIndexOf('.'));
+        var path = name.slice(0, -(extension.length));
+
         getDust(req, config.isBuild).then(function(dust){
-          text.get(req.toUrl(name), function(tpl){
-            var extension = name.substring(name.lastIndexOf('.'));
-            var path = name.slice(0, -(extension.length));
+        	if ( dust.cache && !dust.cache[path] ) {
+	          text.get(req.toUrl(name), function(tpl){
+	            if (config.isBuild) {
+	              // write out the module definition for builds
+	              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'")); return "',path,'";});'].join('');
+	            } else {
+	              dust.loadSource(dust.compile(tpl, path));
+	            }
 
-            if (config.isBuild) {
-              // write out the module definition for builds
-              buildMap[name] = ['define(["',dustModule,'"],function(dust){dust.loadSource(dust.compile(',"'",tpl,"'",', "',path,'")); return "',path,'";});'].join('');
-            } else {
-              dust.loadSource(dust.compile(tpl, path));
-            }
-
-            onload(path);
-          });
+	            onload(path);
+	          });
+        	} else {
+        		onload(path);
+        	}
         });
       },
       write: function(plugin, name, write){
